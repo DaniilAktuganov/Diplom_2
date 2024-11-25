@@ -31,7 +31,6 @@ public class GetUserOrdersTest {
     public void setUp() {
         userClient = new UserClient();
         orderClient = new OrderClient();
-        orderGenerator = new OrderGenerator();
         user = createDefaultUser();
         userClient.sendPostRequestAuthRegister(user);
         Response loginResponse = userClient.sendPostRequestAuthLogin(user);

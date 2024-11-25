@@ -32,7 +32,6 @@ public class CreateOrderWithoutLoginTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        orderGenerator = new OrderGenerator();
     }
 
     @Test
