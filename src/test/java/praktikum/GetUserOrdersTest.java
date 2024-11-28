@@ -21,7 +21,6 @@ public class GetUserOrdersTest {
 
     private UserClient userClient;
     private OrderClient orderClient;
-    private OrderGenerator orderGenerator;
     private User user;
     private Response response;
     private String accessToken;
@@ -35,7 +34,7 @@ public class GetUserOrdersTest {
         userClient.sendPostRequestAuthRegister(user);
         Response loginResponse = userClient.sendPostRequestAuthLogin(user);
         accessToken = userClient.getAccessToken(loginResponse);
-        Order orderIngredients = orderGenerator.createOrder();
+        Order orderIngredients = OrderGenerator.createOrder();
         orderResponse = orderClient.sendPostRequestOrdersWithLogin(accessToken, orderIngredients);
     }
 
