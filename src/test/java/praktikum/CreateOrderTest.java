@@ -20,7 +20,6 @@ public class CreateOrderTest {
 
     private UserClient userClient;
     private OrderClient orderClient;
-    private OrderGenerator orderGenerator;
     private User user;
     private Response response;
     private String accessToken;
@@ -39,7 +38,7 @@ public class CreateOrderTest {
     @DisplayName("Успешное создание заказа")
     @Description("Проверка, что заказ можно создать с корректными данными")
     public void createOrderTest() {
-        Order orderIngredients = orderGenerator.createOrder();
+        Order orderIngredients = OrderGenerator.createOrder();
         response = orderClient.sendPostRequestOrdersWithLogin(accessToken, orderIngredients);
         response.then()
                 .statusCode(SC_OK)
@@ -52,7 +51,7 @@ public class CreateOrderTest {
     @DisplayName("Проверка создания заказа без ингредиентов")
     @Description("Создать заказ без ингредиентов невозможно")
     public void createOrderWithoutIngredientsTest() {
-        Order orderIngredients = orderGenerator.createOrderWithoutIngredients();
+        Order orderIngredients = OrderGenerator.createOrderWithoutIngredients();
         response = orderClient.sendPostRequestOrdersWithLogin(accessToken, orderIngredients);
         response.then()
                 .statusCode(SC_BAD_REQUEST)
@@ -64,7 +63,7 @@ public class CreateOrderTest {
     @DisplayName("Проверка создания заказа с неверным хешем ингредиентов")
     @Description("Создать заказ с неверным хешем ингредиентов невозможно")
     public void createOrderWithInvalidHashIngredientsTest() {
-        Order orderIngredients = orderGenerator.createOrderWithInvalidHashIngredients();
+        Order orderIngredients = OrderGenerator.createOrderWithInvalidHashIngredients();
         response = orderClient.sendPostRequestOrdersWithLogin(accessToken, orderIngredients);
         response.then()
                 .statusCode(SC_INTERNAL_SERVER_ERROR);
