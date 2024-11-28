@@ -21,8 +21,6 @@ import static praktikum.generators.UserGenerator.createDefaultUser;
 @RunWith(MockitoJUnitRunner.class)
 public class CreateOrderWithoutLoginTest {
 
-    private OrderGenerator orderGenerator;
-
     @Mock
     private UserClient userClient;
 
@@ -40,7 +38,7 @@ public class CreateOrderWithoutLoginTest {
     public void createOrderWithoutLoginTest() {
         User user = createDefaultUser();
         userClient.sendPostRequestAuthRegister(user);
-        Order orderIngredients = orderGenerator.createOrder();
+        Order orderIngredients = OrderGenerator.createOrder();
         orderClient.sendPostRequestOrdersWithoutLogin(orderIngredients);
         verifyUserLoginInvocation(user);
     }
